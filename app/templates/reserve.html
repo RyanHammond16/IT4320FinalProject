@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve a Seat</title>
+</head>
+<body>
+    <h1>Reserve a Seat</h1>
+
+    <!-- Display the seating chart -->
+    <table>
+        {% for row in seating_chart %}
+            <tr>
+                <td>{{ row }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Reservation form -->
+    <form method="POST">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" required><br>
+        
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" required><br>
+        
+        <label for="seat_row">Seat Row (0-11):</label>
+        <input type="number" name="seat_row" min="0" max="11" required><br>
+        
+        <label for="seat_column">Seat Column (0-3):</label>
+        <input type="number" name="seat_column" min="0" max="3" required><br>
+        
+        <button type="submit">Reserve Seat</button>
+    </form>
+
+    <!-- Display success or error message -->
+    {% if success_message %}
+        <p style="color: green;">{{ success_message }}</p>
+    {% endif %}
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    
+    <!-- Back to Main Menu button -->
+    <a href="{{ url_for('index') }}">
+        <button type="button">Back to Main Menu</button>
+    </a>
+
+</body>
+</html>
